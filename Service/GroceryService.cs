@@ -1,24 +1,37 @@
 ﻿using Infrastructure;
+using Infrastructure;
+using LinqToDB;
 
 namespace Service;
 
 public interface IGroceryService
 {
-    public List<object> GetGroceries();
+    public List<GroceryItem> GetGroceries();
+    public void InsertGroceryItem();
 }
 
 public class GroceryService : IGroceryService
 {
-    private readonly MyFakeDatabase _db;
+    private readonly GroceryDatabase _db;
 
-    public GroceryService(MyFakeDatabase db)
+    public GroceryService(GroceryDatabase db)
     {
         _db = db;
-        Console.WriteLine("Service has been instantied");
+        Console.WriteLine("Service has been instantiated");
+    }
+    
+    public List<GroceryItem> GetGroceries()
+    {
+        return _db.Groceries().ToList();
     }
 
-    public List<object> GetGroceries()
+    public void InsertGroceryItem()
     {
-        return _db.MyObjects;
+        var item = new GroceryItem()
+        {
+            Id = "helloworld" + new Random().Next(),
+            GroceryName = "My grocery item"
+        };
+        _db.Insert(item);
     }
 }
