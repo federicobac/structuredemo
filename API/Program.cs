@@ -20,7 +20,7 @@ public class MyGroceryController : ControllerBase
 
     public MyGroceryController(IGroceryService groceryService)
     {
-        Console.WriteLine("Controller has been instantied");
+        Console.WriteLine("Controller has been instantiated");
         this.groceryService = groceryService;
     }
 

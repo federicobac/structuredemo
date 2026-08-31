@@ -4,7 +4,7 @@ namespace Service;
 
 public interface IGroceryService
 {
-    List<object> GetGroceries();
+    public List<object> GetGroceries();
 }
 
 public class GroceryService : IGroceryService
@@ -13,7 +13,7 @@ public class GroceryService : IGroceryService
 
     public GroceryService(MyFakeDatabase db)
     {
-        _db = _db;
+        _db = db;
         Console.WriteLine("Service has been instantied");
     }
 
